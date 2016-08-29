@@ -32,12 +32,42 @@ def merge(a,b):
         print('all the way')
     return c
 
-a = [1,3,5,7]
-b = [2,4,6,8,10,12]
+a = [20,21,22]
+b = [2,4,6,7,8,10,22]
 
-print(merge(a,b))
+
 
 def mergeBetter(a,b):
+    i = j = 0
+    c = []
+
+    while i < len(a) and j < len(b):
+        if a[i]>b[j]:
+            c.append(b[j])
+            j+=1
+        elif a[i] == b[j]:                      #part of assignment 1
+            print("sucess!", a[i], "=", b[j])
+            i+=1
+        else:
+            c.append(a[i])
+            i+=1
+    print("no matches")
+    # while i<len(a):
+    #     c.append(a[i])
+    #     i+=1
+    # while j < len(b):
+    #     c.append(b[j])
+    #     j+=1
+    return c
+
+def swap(a):
+    x = a[0]
+    a[0] = a[1]
+    a[1] = x
+
+    return a
+
+def mergeFaster(a,b):
     i = j = 0
     c = []
 
@@ -56,4 +86,21 @@ def mergeBetter(a,b):
         j+=1
     return c
 
-print (mergeBetter(a,b))
+def baseCase(a,l,u):
+    if a[l]>a[u]:
+        return(swap(a))
+
+
+def mergeSort(a,l,u):
+    if (u-l +1)<=2:
+        return baseCase(a,l,u)
+    mid = int((l+u)/2)
+    mergeSort(a,l,mid)
+    mergeSort(a, mid+1, u)
+    c = a[l:mid]
+    d = a[(mid+1):u]
+    mergeFaster(c,d)
+
+a = [1,10,4,2,40,6]
+
+print(mergeSort(a,0,5))
