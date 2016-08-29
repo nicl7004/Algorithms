@@ -17,9 +17,16 @@ print(listA)
 print(listB)
 
 def checkIfElement(A,B):
+    numberComparisons = 0
     for i in A:
-        for j in B:
-            if A[i] == B[j]:
-                return true
-    return false
 
+        for x in B:
+            #print("i = ", i, "x =", x)
+            numberComparisons += 1
+            if A[i] == B[x-1]:
+
+                return 1, numberComparisons
+    return 0, numberComparisons
+
+print("list a vs list a", checkIfElement(listA, listA))
+print("list b vs list b", checkIfElement(listA, listB))
