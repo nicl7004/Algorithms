@@ -16,4 +16,10 @@ while i < 10000:
 print(listA)
 print(listB)
 
+def checkIfElement(A,B):
+    for i in A:
+        for j in B:
+            if A[i] == B[j]:
+                return true
+    return false
 
