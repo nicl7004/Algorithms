@@ -13,5 +13,5 @@ def recursiveFindMax(a, left, right):
         else:
             return a[left]
 
-a = [1,2,50,12,19,15,20,10]
+a = [1,2,50,12,19,15,20,51]
 print(recursiveFindMax(a, 0, 7))
