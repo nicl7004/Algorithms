@@ -1,6 +1,6 @@
 
 a = [12,17,300,5,13]
-x = 3
+x = 5
 def findMin(a,x):
     i = 0
     min = a[i]
@@ -24,3 +24,16 @@ def makeArray(a,x):
     return b
 y = makeArray(a,x)
 print(y)
+
+def findProfit(big,small):
+    x = 0
+    profit = big[0]-small[0]
+    while x<len(big):
+        tmp = big[x]-findMin(big,x)
+        if tmp>profit:
+            profit = tmp
+        x += 1
+    return profit
+
+profit = findProfit(a,y)
+print (profit)
