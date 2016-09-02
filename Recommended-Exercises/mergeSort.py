@@ -91,7 +91,7 @@ def baseCase(a,l,u):
         return(swap(a))
 
 
-def mergeSort(a,l,u):
+def mergeSorta(a,l,u):
     if (u-l +1)<=2:
         return baseCase(a,l,u)
     mid = int((l+u)/2)
@@ -103,4 +103,24 @@ def mergeSort(a,l,u):
 
 a = [1,10,4,2,40,6]
 
-print(mergeSort(a,0,5))
+
+
+
+def mergeSort(a,l,r):
+    mid = (r+l)//2
+    print(mid, "mid")
+    if(r-l)>2:
+        x = mergeSort(a,l,mid)
+        y = mergeSort(a,mid,r)
+        print(x,y)
+        print(y)
+        mergeFaster(x,y)
+
+    else:
+        if a[l]>a[r]:
+            print(a[l],a[r])
+            return swap(a)
+
+print(mergeSorta(a,0,5))
+
+# print(mergeSort(a,0,5))
