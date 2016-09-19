@@ -1,4 +1,11 @@
-a = [1,12,15,2,6,9,10,13]
+a = [3,12,15,2,6,9,13,10,8,8]
+
+# one input that breaks the partition is placing the largest value to be the pivot.
+# this is because I is over incremented and cannot be accessed in our swap function.
+
+
+# If your pivot is a dupilcate number it is not placed into the correct partition
+#
 
 def swap(a,i,j):
     (a[i], a[j]) = (a[j], a[i])
@@ -14,9 +21,13 @@ def wrongPartition(a):
         #            a[i+1] to a[j-1] are > pivot,
         #            everything else is to be processed
         if (a[j] <= pivot): #If a[j+1] is smaller than pivot
-            swap(a,i,j)  # move the new to be processed
+
+# CHANGE ORDER OF SWAP AND I = I+1
+            swap(a,i,j)
+            i = i + 1
+              # move the new to be processed                             FIXED THIS
                              # element into the correct place
-            i = i +1
+
     # end for loop
     swap(a,i+1,n-1)        # Final step: restore the pivot back to place
 
