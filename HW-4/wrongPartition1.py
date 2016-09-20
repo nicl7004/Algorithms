@@ -1,5 +1,5 @@
 a = [3,12,15,2,6,9,13,10,8,8]
-
+# Line 8 14 and 16
 # one input that breaks the partition is placing the largest value to be the pivot.
 # this is because I is over incremented and cannot be accessed in our swap function.
 
