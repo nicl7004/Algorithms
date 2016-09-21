@@ -3,7 +3,8 @@ a = [3,12,15,2,6,9,13,10,8,8]
 # one input that breaks the partition is placing the largest value to be the pivot.
 # this is because I is over incremented and cannot be accessed in our swap function.
 
-
+# you go out of bounds
+# i and j are the same value fam
 # If your pivot is a dupilcate number it is not placed into the correct partition
 #
 
