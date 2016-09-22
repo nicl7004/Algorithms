@@ -9,7 +9,7 @@
 #    If left is None, then it means that the node has no left child.
 #    If right is None then the node has no right child.
 
-
+# swag
 class Node:
 
     def __init__(self, my_key): # Constructor for the Node.
