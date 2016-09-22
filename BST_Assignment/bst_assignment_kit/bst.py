@@ -21,8 +21,22 @@ class Node:
         # TODO: write an insert function for the BST.
         # NOTE: If key_to_insert equals my_key,
         #       then the node need should NOT be inserted in the tree.
-        # REMOVE the assert below
-        assert False, 'Function insert not implemented yet.'
+
+        # base case
+        if (self.key == None):
+            self.key = key_to_insert
+        # if node is already present
+        elif key_to_insert == self.key:
+            return
+        # if key is larger than currentnode
+        elif key_to_insert > self.key:
+            self.key = self.right
+            return(self.insert(key_to_insert)) #recurse
+        elif key_to_insert < self.key:
+            self.key = self.left
+            return(self.insert(key_to_insert))
+
+
 
     def inorder_traversal(self, ret_list):
         # TODO: write an inorder traversal function for the BST.
