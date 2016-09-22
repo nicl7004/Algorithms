@@ -1,4 +1,4 @@
-a = [3,12,15,2,6,9,13,10,8,8]
+a = [2,2,2,2,2]
 # Line 8 14 and 16
 # one input that breaks the partition is placing the largest value to be the pivot.
 # this is because I is over incremented and cannot be accessed in our swap function.
@@ -24,7 +24,7 @@ def wrongPartition(a):
         if (a[j] <= pivot): #If a[j+1] is smaller than pivot
 
 # CHANGE ORDER OF SWAP AND I = I+1
-            swap(a,i,j)
+            swap(a,i+1,j)
             i = i + 1
               # move the new to be processed                             FIXED THIS
                              # element into the correct place
