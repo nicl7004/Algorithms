@@ -38,17 +38,15 @@ class Node:
 
 
 
-    def inorder_traversal(self, ret_list):
-        # TODO: write an inorder traversal function for the BST.
-        # REMOVE the assert below
-        assert False, 'Function inorder_traversal not implemented yet'
-
+    # def inorder_traversal(self, ret_list):
     def get_depth(self):
-        # TODO: write a get_depth function for the BST
-        #   Depth of a tree with no children is 1.
-        #   Otherwise, depth = 1 + max(depth(left subtree), depth(right subtree))
-        # REMOVE the assert below
-        assert False, 'Function get_depth not implemented yet'
+
+        if (self.left == None) and (self.right == None):
+            return 1
+        else:
+
+            depth = 1+max(self.get_depth(self.left), self.get_depth(self.right))
+            return depth
 
     def key_exists(self, key_to_find):
         # return True if the key_to_find is already in the tree,
