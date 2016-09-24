@@ -9,6 +9,10 @@
 #    If left is None, then it means that the node has no left child.
 #    If right is None then the node has no right child.
 
+
+
+
+
 # swag
 class Node:
 
@@ -39,13 +43,25 @@ class Node:
 
 
     # def inorder_traversal(self, ret_list):
+
+    def inorder_traversal(self, ret_list):
+        # TODO: write an inorder traversal function for the BST.
+        # REMOVE the assert below
+        assert False, 'Function inorder_traversal not implemented yet'
+
     def get_depth(self):
 
         if (self.left == None) and (self.right == None):
             return 1
         else:
-
+            left = self.left
+            self.key = self.right
+            depthRight = self.get_depth(self)
+            self.key = left
+            depthLeft = self.get_depth(self)
+            depth = 1+max()
             depth = 1+max(self.get_depth(self.left), self.get_depth(self.right))
+            print(self.get_depth(self.left), "left depth", self.get_depth(self.right), "right depth")
             return depth
 
     def key_exists(self, key_to_find):
