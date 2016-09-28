@@ -12,12 +12,20 @@ def findMax(array):
         return (maxim)
 
 class myTest(unittest.TestCase):
-    def test(self):
-        self.assertEqual(findMax(ar1),10))
+    def testA(self):
+        self.assertEqual(findMax(ar1),10)
+    def testB(self):
         self.assertEqual(findMax(ar2), 6)
-        self.assertEqual(findMax(ar2, 6))
-        self.assertEqual(findMax(ar2, 6))
-        self.assertEqual(findMax(ar2, 6))
+    def testC(self):
+        self.assertEqual(findMax(ar3), 10)
+    def testD(self):
+        self.assertEqual(findMax(ar4), 10)
+    def testE(self):
+        self.assertEqual(findMax(ar5), 20)
+
+
+
+
 ar1 = [9,6,8,5,7,4,1,3,2,10]
 ar2 = [2,2,2,2,2,2,2,6]
 ar3 = [1,2,3,4,5,6,7,8,9,10]
