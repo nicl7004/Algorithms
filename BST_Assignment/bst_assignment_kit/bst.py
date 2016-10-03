@@ -7,7 +7,9 @@ class Node:
         self.key = my_key       # Set the key to my_key
         self.left = None        # Set left child to None
         self.right = None       # Set right child to None
-        self.depth = self.depthLeft = self.depthRight = 0
+
+
+
     def insert(self, key_to_insert):
         # TODO: write an insert function for the BST.
         # NOTE: If key_to_insert equals my_key,
@@ -24,9 +26,6 @@ class Node:
                 self.left = Node(key_to_insert)
             else:
                 return(self.left.insert(key_to_insert))
-
-
-
     # def inorder_traversal(self, ret_list):
 
     def inorder_traversal(self, ret_list):
@@ -38,11 +37,24 @@ class Node:
         if self.key == None:
             return 0
         else:
-            left = self.left
-            right = self.right
-            
-            right = self.right.get_depth()
-            return(max(left, right))
+            lefty = self.left
+            self.key = self.right
+            rightDep = self.get_depth()
+            self.key = lefty
+            leftDep = self.get_depth()
+
+            if (leftDep > rightDep):
+                return leftDep +1
+            else:
+                return rightDep+1
+
+            # right = self.right
+            # self.key = self.left
+            # left = self.get_depth()
+            # self.key = right
+            # right = self.get_depth()
+            # right = self.right.get_depth()
+            # return(max(left, right))
 
         # else:
         #     left = self.left
