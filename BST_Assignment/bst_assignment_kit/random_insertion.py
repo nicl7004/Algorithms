@@ -56,11 +56,3 @@ ax2.set_xlabel('n')
 ax2.set_ylabel('Avg. Tree Depth')
 ax2.set_title('Avg. Tree Depth vs. n')
 plt.show()
-
-
-
-
-
-
-
-

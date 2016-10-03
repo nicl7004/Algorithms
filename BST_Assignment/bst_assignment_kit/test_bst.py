@@ -40,18 +40,18 @@ def run_test(filename):
                 else:
                     print('\t Failed: expected depth = %s, root.depth returned: %d'%(m.group(1), d))
                     fail = True
-            # m = re.match(r'T\s*\[((\s*\d+,?)+)\]', line)
-            # if m:
-            #     assert root
-            #     print('Inorder traversal expected:', end='')
-            #     res_list = m.group(1).split(',')
-            #     int_list = [int(s) for s in res_list]
-            #     print(int_list)
-            #     ret_list = []
-            #     root.inorder_traversal(ret_list)
-            #     if ret_list != int_list:
-            #         print('Fail -- obtained: ', ret_list)
-            #         fail = True
+            m = re.match(r'T\s*\[((\s*\d+,?)+)\]', line)
+            if m:
+                assert root
+                print('Inorder traversal expected:', end='')
+                res_list = m.group(1).split(',')
+                int_list = [int(s) for s in res_list]
+                print(int_list)
+                ret_list = []
+                root.inorder_traversal(ret_list)
+                if ret_list != int_list:
+                    print('Fail -- obtained: ', ret_list)
+                    fail = True
         return fail
     except IOError:
         print(' Could not open: '+filename)

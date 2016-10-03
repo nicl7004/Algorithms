@@ -29,9 +29,17 @@ class Node:
     # def inorder_traversal(self, ret_list):
 
     def inorder_traversal(self, ret_list):
-        # TODO: write an inorder traversal function for the BST.
-        # REMOVE the assert below
-        assert False, 'Function inorder_traversal not implemented yet'
+
+        if self.left != None:
+            self.left.inorder_traversal(ret_list)
+        ret_list.append(self.key)
+
+        if self.right != None:
+            self.right.inorder_traversal(ret_list)
+
+
+
+
 
     def get_depth(self):
 
