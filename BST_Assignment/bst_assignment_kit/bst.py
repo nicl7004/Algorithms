@@ -1,3 +1,7 @@
+# Name: Your Name Here
+# On my honor as a University of Colorado Student, this code was entirely written by myself with no unauthorized help.
+
+
 # This class implements a Binary Search Tree Class
 # The binary search tree class will include functionality of
 #   1. Insert a Node in the Tree.
@@ -34,11 +38,11 @@ class Node:
             return
         # if key is larger than currentnode
         elif key_to_insert > self.key:
-            self.key = self.right
-            return(self.insert(key_to_insert)) #recurse
+            self.right = Node(key_to_insert)
+            return(self.right.insert(key_to_insert)) #recurse
         elif key_to_insert < self.key:
-            self.key = self.left
-            return(self.insert(key_to_insert))
+            self.left = Node(key_to_insert)
+            return(self.left.insert(key_to_insert))
 
 
 
@@ -63,12 +67,23 @@ class Node:
             depth = 1+max(self.get_depth(self.left), self.get_depth(self.right))
             print(self.get_depth(self.left), "left depth", self.get_depth(self.right), "right depth")
             return depth
-
     def key_exists(self, key_to_find):
-        # return True if the key_to_find is already in the tree,
-        #   otherwise return False
-        # REMOVE the assert below
-        assert False, ' Function find not implemented yet'
+
+    # base case
+    if (self.key == None):
+        self.key = key_to_insert
+    # if node is already present
+    elif key_to_insert == self.key:
+        return
+    # if key is larger than currentnode
+    elif key_to_insert > self.key:
+        self.right = Node(key_to_insert)
+        return(self.right.insert(key_to_insert)) #recurse
+    elif key_to_insert < self.key:
+        self.left = Node(key_to_insert)
+        return(self.left.insert(key_to_insert))
+
+
 
 if __name__ == '__main__':
     print('Please do not call this file directly.')

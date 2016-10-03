@@ -19,27 +19,27 @@ def run_test(filename):
                 assert root
                 print('Insert:', m.group(1))
                 root.insert(int(m.group(1)))
-            # m = re.match(r'S\s*(\d+)\s*(true|false)', line)
-            # if m:
-            #     assert root
-            #     print('Search:', m.group(1))
-            #     res = root.key_exists(int(m.group(1)))
-            #     expected = (m.group(2) =='true')
-            #     if res != expected:
-            #         print('\t Failed: Expected Value was = ', m.group(2), 'root.search returned:', res)
-            #         fail = True
-            #     else:
-            #         print('\t Expected: ', m.group(2), ' tree returned: ', res, 'OK!')
-            m = re.match(r'D\s*(\d+)', line)
+            m = re.match(r'S\s*(\d+)\s*(true|false)', line)
             if m:
                 assert root
-                print('Depth: (expected = ', m.group(1),')')
-                d = root.get_depth()
-                if d == int(m.group(1)):
-                    print('\t OK!')
-                else:
-                    print('\t Failed: expected depth = %s, root.depth returned: %d'%(m.group(1), d))
+                print('Search:', m.group(1))
+                res = root.key_exists(int(m.group(1)))
+                expected = (m.group(2) =='true')
+                if res != expected:
+                    print('\t Failed: Expected Value was = ', m.group(2), 'root.search returned:', res)
                     fail = True
+                else:
+                    print('\t Expected: ', m.group(2), ' tree returned: ', res, 'OK!')
+            # m = re.match(r'D\s*(\d+)', line)
+            # if m:
+            #     assert root
+            #     print('Depth: (expected = ', m.group(1),')')
+            #     d = root.get_depth()
+            #     if d == int(m.group(1)):
+            #         print('\t OK!')
+            #     else:
+            #         print('\t Failed: expected depth = %s, root.depth returned: %d'%(m.group(1), d))
+            #         fail = True
             # m = re.match(r'T\s*\[((\s*\d+,?)+)\]', line)
             # if m:
             #     assert root
