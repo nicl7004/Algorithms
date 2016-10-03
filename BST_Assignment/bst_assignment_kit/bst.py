@@ -34,40 +34,8 @@ class Node:
         assert False, 'Function inorder_traversal not implemented yet'
 
     def get_depth(self):
-        if self.key == None:
-            return 0
-        else:
-            lefty = self.left
-            self.key = self.right
-            rightDep = self.get_depth()
-            self.key = lefty
-            leftDep = self.get_depth()
 
-            if (leftDep > rightDep):
-                return leftDep +1
-            else:
-                return rightDep+1
-
-            # right = self.right
-            # self.key = self.left
-            # left = self.get_depth()
-            # self.key = right
-            # right = self.get_depth()
-            # right = self.right.get_depth()
-            # return(max(left, right))
-
-        # else:
-        #     left = self.left
-        #     self.key = self.rightl
-        #     depthRight = self.get_depth(self)
-        #     self.key = left
-        #     depthLeft = self.get_depth(self)
-        #     depth = 1+max()
-        #     depth = 1+max(self.get_depth(self.left), self.get_depth(self.right))
-        #     print(self.get_depth(self.left), "left depth", self.get_depth(self.right), "right depth")
-        #     return depth
-
-
+        return(max(self.left.get_depth() if self.left else 0,  self.right.get_depth() if self.right else 0)+1)
 
     def key_exists(self, key_to_find):
 
