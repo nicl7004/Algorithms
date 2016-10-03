@@ -30,16 +30,16 @@ def run_test(filename):
                     fail = True
                 else:
                     print('\t Expected: ', m.group(2), ' tree returned: ', res, 'OK!')
-            # m = re.match(r'D\s*(\d+)', line)
-            # if m:
-            #     assert root
-            #     print('Depth: (expected = ', m.group(1),')')
-            #     d = root.get_depth()
-            #     if d == int(m.group(1)):
-            #         print('\t OK!')
-            #     else:
-            #         print('\t Failed: expected depth = %s, root.depth returned: %d'%(m.group(1), d))
-            #         fail = True
+            m = re.match(r'D\s*(\d+)', line)
+            if m:
+                assert root
+                print('Depth: (expected = ', m.group(1),')')
+                d = root.get_depth()
+                if d == int(m.group(1)):
+                    print('\t OK!')
+                else:
+                    print('\t Failed: expected depth = %s, root.depth returned: %d'%(m.group(1), d))
+                    fail = True
             # m = re.match(r'T\s*\[((\s*\d+,?)+)\]', line)
             # if m:
             #     assert root
