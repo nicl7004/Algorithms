@@ -11,6 +11,8 @@ def findMax(array):
         maxim = max(l,r)
         return (maxim)
 
+
+
 class myTest(unittest.TestCase):
     def testA(self):
         self.assertEqual(findMax(ar1),10)
