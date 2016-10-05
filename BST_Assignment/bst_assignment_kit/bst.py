@@ -1,4 +1,4 @@
-# Name: Your Name Here
+# Name: Nicholas Clement
 # On my honor as a University of Colorado Student, this code was entirely written by myself with no unauthorized help.
 # swag
 class Node:
@@ -11,9 +11,7 @@ class Node:
 
 
     def insert(self, key_to_insert):
-        # TODO: write an insert function for the BST.
-        # NOTE: If key_to_insert equals my_key,
-        # base case
+
         if key_to_insert == self.key:
             return
         elif key_to_insert > self.key:
@@ -26,7 +24,6 @@ class Node:
                 self.left = Node(key_to_insert)
             else:
                 return(self.left.insert(key_to_insert))
-    # def inorder_traversal(self, ret_list):
 
     def inorder_traversal(self, ret_list):
 
