@@ -15,31 +15,46 @@ import random
 def partition(interval_lst, l, r):
     pivot = interval_lst[r][0]
 
-    i, j = -1, 0
+    i, j = l-1, l
     for j in range (l,r):
-        if a[j][0] < pivot:
+        if interval_lst[j][0] <= pivot:
             interval_lst[i+1], interval_lst[j] = interval_lst[j], interval_lst[i+1]
             i +=1
 
     interval_lst[i+1], interval_lst[r] = interval_lst[r], interval_lst[i+1]
-    return i
+    return i +1
 
 
 def quickSort(interval_lst, l, r):
     if l<r:
         part = partition(interval_lst, l, r)
-        quickSort(interval_lst, l, part)
+        quickSort(interval_lst, l, part-1)
         quickSort(interval_lst, part+1, r)
+    return interval_lst
 
 
 
 def free_time_intervals(interval_lst, T):
     # First step is to sort the passed in list based on start times
-    lengthList = len(interval_lst) -1#need to find the number of elements not just T
 
-    print(len(interval_lst), T)
-    sortList(interval_lst, 0, lengthList)
-    return None
+
+    lengthList = len(interval_lst) -1
+    sortedArr = quickSort(interval_lst, 0, lengthList)
+
+    print(sortedArr)
+    x = []
+    var = 0
+    for each in sortedArr:
+
+      if each[0] > var:
+        x.append((var, each[0]))
+      var = max(var, each[1])
+    
+
+
+    if var < T:
+        x.append((var, T))
+    return x
 
 def max_logged_in(interval_lst,T):
     # First design the algorithm on pen/paper and solve a few examples.
