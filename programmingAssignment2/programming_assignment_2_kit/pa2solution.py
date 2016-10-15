@@ -60,17 +60,25 @@ def max_logged_in(interval_lst,T):
     sortedArr = quickSort(interval_lst, 0, len(interval_lst)-1)
 
     y = []
-    x = 0
+    time = []
+    x, each = 0, 0
     var = sortedArr[0][1] #set to end time of first user to start things off
-
-    for each in sortedArr:
-        if each[0]<=var:
+    while each < len(sortedArr) -1:
+        print(sortedArr[each])
+        # print(each)
+        # print(sortedArr[each][0])
+        # print(var)
+        if sortedArr[each][0]<=var:
             x +=1
+            print(x)
+
         else:
-            # print("appending ", x)
+            print("appending ", x)
+            time.append((sortedArr[each-1][0], var))
             y.append(x)
             x = 1
-        var = max(var, each[1])
+        each +=1
+        var = max(var, sortedArr[each][1])
     print (sortedArr)
 
     # z = max(y)
