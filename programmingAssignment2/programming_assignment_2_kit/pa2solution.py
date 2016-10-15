@@ -64,13 +64,12 @@ def max_logged_in(interval_lst,T):
     x, each = 0, 0
     var = sortedArr[0][1] #set to end time of first user to start things off
     while each < len(sortedArr) -1:
-        print(sortedArr[each])
-        # print(each)
-        # print(sortedArr[each][0])
-        # print(var)
-        if sortedArr[each][0]<=var:
+        print(sortedArr[each][0])
+        print(var)
+
+        if (sortedArr[each][0]<=var):
             x +=1
-            print(x)
+            # print(x)
 
         else:
             print("appending ", x)
@@ -78,11 +77,12 @@ def max_logged_in(interval_lst,T):
             y.append(x)
             x = 1
         each +=1
-        var = max(var, sortedArr[each][1])
+        var = max(var, sortedArr[each-1][1])
     print (sortedArr)
 
     # z = max(y)
     print(y)    # return x
+    print(time)
 
 
 if __name__ == '__main__':
