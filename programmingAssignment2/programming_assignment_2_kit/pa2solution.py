@@ -49,8 +49,6 @@ def free_time_intervals(interval_lst, T):
       if each[0] > var:
         x.append((var, each[0]))
       var = max(var, each[1])
-    
-
 
     if var < T:
         x.append((var, T))
@@ -58,6 +56,8 @@ def free_time_intervals(interval_lst, T):
 
 def max_logged_in(interval_lst,T):
     # First design the algorithm on pen/paper and solve a few examples.
+
+
     return None
 
 
