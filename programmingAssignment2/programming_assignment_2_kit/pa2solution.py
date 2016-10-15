@@ -50,16 +50,12 @@ def free_time_intervals(interval_lst, T):
             next
 
         if each[0] > var:
-            if each[1] > T:
-                # x.append((var, T))
+            if each[0] > T:
+                x.append((var, T))
                 next
-            x.append((var, each[0]))
+            else:
+                x.append((var, each[0]))
         var = max(var, each[1])
-
-
-
-
-
     if var < T:
         x.append((var, T))
     # print(x)
@@ -75,19 +71,12 @@ def max_logged_in(interval_lst,T):
 
     x, each, runningMax = 0, 0, 0
     var = sortedArr[0][1] #set to end time of first user to start things off
-    # minvar = sortedArr[0][0]
     while each < len(sortedArr) -1:
-        # print(sortedArr[each][0])
-        # print(var)
 
         if (sortedArr[each][0]<=var):
             x +=1
-            # minvar = min(sortedArr[each][1], minvar)
-
-            # print(x)
 
         elif x > runningMax:
-            # print("appending ", x)
             time = (x,sortedArr[each-1][0])
             runningMax = x
             x = 1
@@ -95,10 +84,6 @@ def max_logged_in(interval_lst,T):
 
         each +=1
         var = max(var, sortedArr[each-1][1])
-    # print (sortedArr)
-
-    # z = max(y)
-    # print(time)
     return(time)
 
 
