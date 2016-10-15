@@ -60,22 +60,22 @@ def run_test_case(test_file_name):
         else:
             print('\t free_time_intervals either not implemented or does not return a list.')
             success = False
-        user_max_occ = pa2solution.max_logged_in(inp_list, T)
-        if (corner_case_check and check_input_list(inp_list)):
-            print('\t Test max_logged_in skipped because a corner case happens')
-        elif user_max_occ:
-            if (user_max_occ == max_occ):
-                print('\t Test max_logged_in passed!')
-            else:
-                success = False
-                print('\t Test max_logged_in failed:')
-                print('\t\t Input: ', inp_list)
-                print('\t\t T: ', T)
-                print('\t\t Expected Output:', max_occ)
-                print('\t\t Your Output:', user_max_occ)
-        else:
-            print('\t max_logged_in not implemented or does not return a list.')
-            success = False
+        # user_max_occ = pa2solution.max_logged_in(inp_list, T)
+        # if (corner_case_check and check_input_list(inp_list)):
+        #     print('\t Test max_logged_in skipped because a corner case happens')
+        # elif user_max_occ:
+        #     if (user_max_occ == max_occ):
+        #         print('\t Test max_logged_in passed!')
+        #     else:
+        #         success = False
+        #         print('\t Test max_logged_in failed:')
+        #         print('\t\t Input: ', inp_list)
+        #         print('\t\t T: ', T)
+        #         print('\t\t Expected Output:', max_occ)
+        #         print('\t\t Your Output:', user_max_occ)
+        # else:
+        #     print('\t max_logged_in not implemented or does not return a list.')
+        #     success = False
         return success
     except IOError as e:
         print('Fatal: error while reading', test_file_name)

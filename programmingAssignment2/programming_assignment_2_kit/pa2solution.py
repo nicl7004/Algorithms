@@ -41,7 +41,7 @@ def free_time_intervals(interval_lst, T):
     lengthList = len(interval_lst) -1
     sortedArr = quickSort(interval_lst, 0, lengthList)
 
-    print(sortedArr)
+    # print(sortedArr)
     x = []
     var = 0
     for each in sortedArr:
@@ -57,9 +57,24 @@ def free_time_intervals(interval_lst, T):
 def max_logged_in(interval_lst,T):
     # First design the algorithm on pen/paper and solve a few examples.
 
+    sortedArr = quickSort(interval_lst, 0, len(interval_lst)-1)
 
-    return None
+    y = []
+    x = 0
+    var = sortedArr[0][1] #set to end time of first user to start things off
 
+    for each in sortedArr:
+        if each[0]<=var:
+            x +=1
+        else:
+            # print("appending ", x)
+            y.append(x)
+            x = 1
+        var = max(var, each[1])
+    print (sortedArr)
+
+    # z = max(y)
+    print(y)    # return x
 
 
 if __name__ == '__main__':
