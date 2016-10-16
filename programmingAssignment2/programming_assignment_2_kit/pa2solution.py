@@ -72,30 +72,39 @@ def max_logged_in(interval_lst,T):
     x, each, runningMax, minEnd = 0, 0, 0, 1000
 
     var = sortedArr[0][1] #set to end time of first user to start things off
-    while each <= len(sortedArr) -1:
+    while each <= len(sortedArr)-1 :
         print("___________________________________")
-        print("Current values = ", sortedArr[each])
         print("Each Currently =", each)
-        print("x =", x)
-        print("running Max =",runningMax)
-        print("var Currently =", var)
+        print("Current values = ", sortedArr[each])
 
-        if (sortedArr[each][0]<=var):
+        if (sortedArr[each][0]<=var and sortedArr[each][0]<=minEnd):
             x +=1
             minEnd = min(sortedArr[each][1], minEnd)
-        if (sortedArr[each][1]<=minEnd):
+        if (sortedArr[each][1]<minEnd):
             x -=1
+        
 
-        elif x > runningMax:
-            time = (x+1,sortedArr[each-1][0])
+        if x > runningMax:
+            time = (x,sortedArr[each][0])
             runningMax = x
-            x = 1
+            # x = 1
 
+
+
+        var = max(var, sortedArr[each][1])
 
         each +=1
-        var = max(var, sortedArr[each-1][1])
+
+
+
+        print("x =", x)
+        print("running Max =",runningMax)
+        print("minimum ending point =", minEnd)
+        print("var Currently =", var)
 
     print("---------------\n\n")
+
+
     return(time)
 
 
@@ -119,7 +128,7 @@ if __name__ == '__main__':
     print(max_logged_in(lst3,30))
 
     lst4 = [(0, 12), (5, 34), (18, 20), (23, 32), (26, 47)]
-
+# expected was 3,26
     print('Input:', lst4)
     print(free_time_intervals(lst4,30))
     print(max_logged_in(lst4,30))
