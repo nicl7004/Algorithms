@@ -69,21 +69,33 @@ def max_logged_in(interval_lst,T):
     y = []
     time = (1,2)
 
-    x, each, runningMax = 0, 0, 0
+    x, each, runningMax, minEnd = 0, 0, 0, 1000
+
     var = sortedArr[0][1] #set to end time of first user to start things off
-    while each < len(sortedArr) -1:
+    while each <= len(sortedArr) -1:
+        print("___________________________________")
+        print("Current values = ", sortedArr[each])
+        print("Each Currently =", each)
+        print("x =", x)
+        print("running Max =",runningMax)
+        print("var Currently =", var)
 
         if (sortedArr[each][0]<=var):
             x +=1
+            minEnd = min(sortedArr[each][1], minEnd)
+        if (sortedArr[each][1]<=minEnd):
+            x -=1
 
         elif x > runningMax:
-            time = (x,sortedArr[each-1][0])
+            time = (x+1,sortedArr[each-1][0])
             runningMax = x
             x = 1
 
 
         each +=1
         var = max(var, sortedArr[each-1][1])
+
+    print("---------------\n\n")
     return(time)
 
 
@@ -98,9 +110,16 @@ if __name__ == '__main__':
     lst2 = [(1,3), (2,8),(3,6), (2,6), (10,15), (12,17), (19,23), (27,35)]
     print('Input (corner-case):', lst2)
     print(free_time_intervals(lst2,30))
-    print(max_logged_in(lst2,30))
+    print("MAX LOGGED =", max_logged_in(lst2,30))
 
-    lst3 = [(5,15), (18,25), (3,12), (4, 11), (1,15), (18,19)]
+    lst3 = [(0, 23), (2, 6), (4, 17), (8, 13), (12, 19), (20, 21), (46, 57), (49, 53), (65, 71), (70, 79)]
+
     print('Input:', lst3)
     print(free_time_intervals(lst3,30))
     print(max_logged_in(lst3,30))
+
+    lst4 = [(0, 12), (5, 34), (18, 20), (23, 32), (26, 47)]
+
+    print('Input:', lst4)
+    print(free_time_intervals(lst4,30))
+    print(max_logged_in(lst4,30))
