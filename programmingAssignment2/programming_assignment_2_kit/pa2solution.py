@@ -2,7 +2,7 @@ from __future__ import print_function
 # in case you wish to use python2, but I strongly prefer that you use python3
 import sys
 import random
-sys.setrecursionlimit(15000)
+sys.setrecursionlimit(25000)
 # had to set the recusion depth to 15 times larger than normal
 recur = sys.getrecursionlimit()
 # failing new test 1, 8,
