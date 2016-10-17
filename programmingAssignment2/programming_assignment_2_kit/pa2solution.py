@@ -2,10 +2,11 @@ from __future__ import print_function
 # in case you wish to use python2, but I strongly prefer that you use python3
 import sys
 import random
-sys.setrecursionlimit(25000)
+sys.setrecursionlimit(50000)
 # had to set the recusion depth to 15 times larger than normal
 recur = sys.getrecursionlimit()
-# failing new test 1, 8,
+# failing new test 1, 8, 10, 12, 13
+# failing test 5
 # NAME:Nicholas Clement
 # STUDENT ID NUMBER: 103151912
 # On my honor as a University of Colorado Boulder student, I have not received any unauthorized help.
@@ -34,8 +35,6 @@ def quickSort(interval_lst, l, r):
         quickSort(interval_lst, l, part-1)
         quickSort(interval_lst, part+1, r)
     return interval_lst
-
-
 
 def free_time_intervals(interval_lst, T):
     # First step is to sort the passed in list based on start times
@@ -66,51 +65,60 @@ def free_time_intervals(interval_lst, T):
 
 def max_logged_in(interval_lst,T):
     # First design the algorithm on pen/paper and solve a few examples.
+    sortedArr = sorted(interval_lst)
+    # time = (1,2)
+    # x, each, runningMax, minEnd = 0, 0, 0, 1000
+    # var = sortedArr[0][1] #set to end time of first user to start things off
+    # while each <= len(sortedArr)-1 :
+    #     print("___________________________________")
+    #     print("Each Currently =", each)
+    #     print("Current values = ", sortedArr[each])
+    #
+    #     if (sortedArr[each][0]<=var):
+    #         x +=1
+    #         minEnd = min(sortedArr[each][1], minEnd)
+    #     if (sortedArr[each][0] > minEnd):
+    #         minEnd = sortedArr[each][1]
+    #         x -=1
+    #     if x > runningMax and y>x:
+    #         time = (x,sortedArr[each][0])
+    #         runningMax = x
+    #
+    #
+    #     var = max(var, sortedArr[each][1])
+    #     each +=1
+    #     y = x
+    #     print("x =", x)
+    #     print("running Max =",runningMax)
+    #     print("minimum ending point =", minEnd)
+    #     print("var Currently =", var)
+    #     print("recusion limit=",recur)
+    #
+    # print("---------------\n\n")
+    #
+    #
+    # return(time)
 
-    sortedArr = quickSort(interval_lst, 0, len(interval_lst)-1)
-    y = []
-    time = (1,2)
+    newList = []
+    y =x=time= 0
+    for each in sortedArr:
+        if each[0] <=T:
+            newList.append((each[0], 1))
+        if each[1] <=T:
+            newList.append((each[1], -1))
 
-    x, each, runningMax, minEnd = 0, 0, 0, 1000
-    var = sortedArr[0][1] #set to end time of first user to start things off
-    while each <= len(sortedArr)-1 :
-        print("___________________________________")
-        print("Each Currently =", each)
-        print("Current values = ", sortedArr[each])
- # and sortedArr[each][0]<=minEnd
-        if (sortedArr[each][0]<=var):
-            x +=1
-            minEnd = min(sortedArr[each][1], minEnd)
-        # if (sortedArr[each][1]<minEnd):
-        #     x -=1
-        if (sortedArr[each][0] > minEnd):
-            minEnd = sortedArr[each][1]
-            x -=1
+    newList = sorted(newList)
+    # print(newList, "    herehehehehheheheh")
+    for each in newList:
+        x += each[1]
+        if y < x:
+            y = x
+            time = each[0]
 
-
-        if x > runningMax:
-            time = (x,sortedArr[each][0])
-            runningMax = x
-            # x = 1
+    return(y, time)
 
 
 
-        var = max(var, sortedArr[each][1])
-
-        each +=1
-
-
-
-        print("x =", x)
-        print("running Max =",runningMax)
-        print("minimum ending point =", minEnd)
-        print("var Currently =", var)
-        print("recusion limit=",recur)
-
-    print("---------------\n\n")
-
-
-    return(time)
 
 
 if __name__ == '__main__':
@@ -132,7 +140,7 @@ if __name__ == '__main__':
     print(free_time_intervals(lst3,30))
     print(max_logged_in(lst3,30))
 
-    lst4 = [(0, 12), (5, 34), (18, 20), (23, 32), (26, 47)]
+    lst4 = [(0, 49), (2,49), (24,25)]
 # expected was 3,26
     print('Input:', lst4)
     print(free_time_intervals(lst4,30))
