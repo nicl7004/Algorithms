@@ -49,18 +49,18 @@ def free_time_intervals(interval_lst, T):
     for each in sortedArr:
 
         if each[0] > T:
-            next
+            continue
 
         if each[0] > var:
             if each[0] > T:
                 x.append((var, T))
-                next
+                continue
             else:
                 x.append((var, each[0]))
         var = max(var, each[1])
     if var < T:
         x.append((var, T))
-    # print(x)
+    # print("HERE",x)
     return x
 
 def max_logged_in(interval_lst,T):
