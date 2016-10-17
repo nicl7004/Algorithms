@@ -2,7 +2,10 @@ from __future__ import print_function
 # in case you wish to use python2, but I strongly prefer that you use python3
 import sys
 import random
-
+sys.setrecursionlimit(15000)
+# had to set the recusion depth to 15 times larger than normal
+recur = sys.getrecursionlimit()
+# failing new test 1, 8,
 # NAME:Nicholas Clement
 # STUDENT ID NUMBER: 103151912
 # On my honor as a University of Colorado Boulder student, I have not received any unauthorized help.
@@ -65,24 +68,25 @@ def max_logged_in(interval_lst,T):
     # First design the algorithm on pen/paper and solve a few examples.
 
     sortedArr = quickSort(interval_lst, 0, len(interval_lst)-1)
-
     y = []
     time = (1,2)
 
     x, each, runningMax, minEnd = 0, 0, 0, 1000
-
     var = sortedArr[0][1] #set to end time of first user to start things off
     while each <= len(sortedArr)-1 :
         print("___________________________________")
         print("Each Currently =", each)
         print("Current values = ", sortedArr[each])
-
-        if (sortedArr[each][0]<=var and sortedArr[each][0]<=minEnd):
+ # and sortedArr[each][0]<=minEnd
+        if (sortedArr[each][0]<=var):
             x +=1
             minEnd = min(sortedArr[each][1], minEnd)
-        if (sortedArr[each][1]<minEnd):
+        # if (sortedArr[each][1]<minEnd):
+        #     x -=1
+        if (sortedArr[each][0] > minEnd):
+            minEnd = sortedArr[each][1]
             x -=1
-        
+
 
         if x > runningMax:
             time = (x,sortedArr[each][0])
@@ -101,6 +105,7 @@ def max_logged_in(interval_lst,T):
         print("running Max =",runningMax)
         print("minimum ending point =", minEnd)
         print("var Currently =", var)
+        print("recusion limit=",recur)
 
     print("---------------\n\n")
 
