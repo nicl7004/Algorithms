@@ -3,10 +3,9 @@ from __future__ import print_function
 import sys
 import random
 sys.setrecursionlimit(50000)
-# had to set the recusion depth to 15 times larger than normal
+# had to set the recusion depth to 50 times larger than normal
 recur = sys.getrecursionlimit()
-# failing new test 1, 8, 10, 12, 13
-# failing test 5
+
 # NAME:Nicholas Clement
 # STUDENT ID NUMBER: 103151912
 # On my honor as a University of Colorado Boulder student, I have not received any unauthorized help.
@@ -16,6 +15,9 @@ recur = sys.getrecursionlimit()
 #
 # Acknowledged By: __ Nicholas Clement__
 
+
+# I no longer use my own implementation of quick sort, after changing the recursion depth to 50000(50 times larger than normal)
+#i still recieved a seg fault, so I have used the standard python Sorted() function, it uses the timsort algorithm.
 def partition(interval_lst, l, r):
     pivot = interval_lst[r][0]
 
