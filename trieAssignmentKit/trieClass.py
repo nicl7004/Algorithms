@@ -23,16 +23,16 @@ class MyTrieNode:
 
     def addWord(self,w):
         assert(len(w) > 0)
-        lengthWord = 0
         for letter in w:
 
             if letter not in self.next:
                 self.next[letter] = MyTrieNode(False); #call the init function to make a new node
 
-            if lengthWord +1 == len(w):
-                self.isWordEnd = True #update the end of the word after our for loop
-                self.count +=1
-            lengthWord +=1
+            self = self.next[letter] #step to the next letter
+
+
+        self.isWordEnd = True #update the end of the word after our for loop
+        self.count +=1
 
 
 
@@ -42,21 +42,25 @@ class MyTrieNode:
         # Return frequency of occurrence of the word w in the trie
         # returns a number for the frequency and 0 if the word w does not occur.
 
-        # YOUR CODE HERE
-        wordCount = 0
         for letter in w:
-            if letter not in self.next:
-                return (0)
-            # if self.isWordEnd == True:
-            #     wordCount +=1
+            if letter in self.next: #move to the next letter
+                self = self.next[letter]
 
-        else:
-            if self.isWordEnd == True:
-                wordCount +=self.count
-            else:
-                return (wordCount)
-        return(wordCount)
+        if self.isWordEnd == True: #check if the current letter is the end of a word
+            return self.count #return the frequency of this word
 
+        return(0)
+
+    def depthSearch(self, given):
+        '''depth search first traversal to search after our prefix is exhausted. '''
+        if self.next.keys() == []:
+            print ("Match:", given)
+            return
+        if self.isWordEnd == True:
+            return(given, self.count)
+
+        for each in self.next.keys():
+            self.next[each].depthSearch(given+each) #iterate through each key and recurse to find the ends of that list
 
 
     def autoComplete(self,w):
@@ -64,7 +68,23 @@ class MyTrieNode:
         #Returns a list of pairs (s,j) denoting that
         #         word s occurs with frequency j
 
-        #YOUR CODE HERE
+
+        x = []
+
+        for letter in w:
+
+
+            if letter not in self.next:
+                return 0 #we know that if all the prefix letters dont exist there is no larger word that will
+
+            if self.isWordEnd:
+                x.append((w, self.count)) #for the off chance that we are passed a word
+
+            self = self.next[letter] #move to the next letter of the prefix
+
+
+
+
 
         return [('Walter',1),('Mitty',2),('Went',3),('To',4),('Greenland',2)] #TODO: change this line, please
 
@@ -83,11 +103,11 @@ if (__name__ == '__main__'):
     j2 = t.lookupWord('telltale') # should return 0
     j3 = t.lookupWord ('testing') # should return 2
     lst3 = t.autoComplete('pi')
-    # print('Completions for \"pi\" are : ')
+    print('Completions for \"pi\" are : ')
     print(lst3)
 
     lst4 = t.autoComplete('tes')
-    # print('Completions for \"tes\" are : ')
+    print('Completions for \"tes\" are : ')
 
     print(j3, "should return 2")
     print(lst4)
