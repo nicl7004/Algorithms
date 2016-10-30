@@ -23,10 +23,18 @@ class MyTrieNode:
 
     def addWord(self,w):
         assert(len(w) > 0)
+        lengthWord = 0
+        for letter in w:
 
-        for each in w:
-            self.next = each
-    
+            if letter not in self.next:
+                self.next[letter] = MyTrieNode(False); #call the init function to make a new node
+
+            if lengthWord +1 == len(w):
+                self.isWordEnd = True #update the end of the word after our for loop
+                self.count +=1
+            lengthWord +=1
+
+
 
         return
 
@@ -35,8 +43,20 @@ class MyTrieNode:
         # returns a number for the frequency and 0 if the word w does not occur.
 
         # YOUR CODE HERE
+        wordCount = 0
+        for letter in w:
+            if letter not in self.next:
+                return (0)
+            # if self.isWordEnd == True:
+            #     wordCount +=1
 
-        return 0 # TODO: change this line, please
+        else:
+            if self.isWordEnd == True:
+                wordCount +=self.count
+            else:
+                return (wordCount)
+        return(wordCount)
+
 
 
     def autoComplete(self,w):
@@ -57,14 +77,17 @@ if (__name__ == '__main__'):
 
     for w in lst1:
         t.addWord(w)
+    print(t.next)
 
     j = t.lookupWord('testy') # should return 0
     j2 = t.lookupWord('telltale') # should return 0
     j3 = t.lookupWord ('testing') # should return 2
     lst3 = t.autoComplete('pi')
-    print('Completions for \"pi\" are : ')
+    # print('Completions for \"pi\" are : ')
     print(lst3)
 
     lst4 = t.autoComplete('tes')
-    print('Completions for \"tes\" are : ')
+    # print('Completions for \"tes\" are : ')
+
+    print(j3, "should return 2")
     print(lst4)
