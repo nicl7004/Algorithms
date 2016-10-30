@@ -72,21 +72,20 @@ class MyTrieNode:
         x = []
 
         for letter in w:
-
-
             if letter not in self.next:
                 return 0 #we know that if all the prefix letters dont exist there is no larger word that will
-
             if self.isWordEnd:
                 x.append((w, self.count)) #for the off chance that we are passed a word
-
             self = self.next[letter] #move to the next letter of the prefix
 
 
+        for key in self.next.keys():
+            x.append(self.next[key].depthSearch(w+key))
+
+        print("autoComplete for word",w, "came out to be", x)
 
 
-
-        return [('Walter',1),('Mitty',2),('Went',3),('To',4),('Greenland',2)] #TODO: change this line, please
+        return(x)
 
 
 
