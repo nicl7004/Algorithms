@@ -53,15 +53,18 @@ class MyTrieNode:
 
     def depthSearch(self, given):
         '''depth search first traversal to search after our prefix is exhausted. '''
-        if self.next.keys() == []:
-            print ("Match:", given)
-            return
-        if self.isWordEnd == True:
-            return(given, self.count)
+        x = []
+        # if self.next.keys() == []:
+        #     print ("Match:", given)
+        #     return x
+        for letter in self.next.keys():
+            print("letter=", letter)
+            if self.next[letter].isWordEnd == True:
+                x.append((given+letter, self.next[letter].count))
 
-        for each in self.next.keys():
-            self.next[each].depthSearch(given+each) #iterate through each key and recurse to find the ends of that list
+            x.append(self.next[letter].depthSearch(given+letter)) #iterate through each key and recurse to find the ends of that list
 
+        return x
 
     def autoComplete(self,w):
         #Returns possible list of autocompletions of the word w
@@ -73,14 +76,14 @@ class MyTrieNode:
 
         for letter in w:
             if letter not in self.next:
-                return 0 #we know that if all the prefix letters dont exist there is no larger word that will
+                return [] #we know that if all the prefix letters dont exist there is no larger word that will
             if self.isWordEnd:
                 x.append((w, self.count)) #for the off chance that we are passed a word
             self = self.next[letter] #move to the next letter of the prefix
 
 
-        for key in self.next.keys():
-            x.append(self.next[key].depthSearch(w+key))
+
+        x.append(self.depthSearch(w))
 
         print("autoComplete for word",w, "came out to be", x)
 
