@@ -4,6 +4,8 @@
 #Comments:
 
 from __future__ import print_function
+import itertools
+from itertools import chain
 import sys
 
 # We will use a class called my trie node
@@ -54,29 +56,25 @@ class MyTrieNode:
     def depthSearch(self, given):
         '''depth search first traversal to search after our prefix is exhausted. '''
         x = []
-        # if self.next.keys() == []:
-        #     print ("Match:", given)
-        #     return x
+
         for letter in self.next.keys():
             print("letter=", letter)
             if self.next[letter].isWordEnd == True:
-                x.append((given+letter, self.next[letter].count))
+                y = (given+letter, self.next[letter].count)
+                x.append(y)
 
             x.append(self.next[letter].depthSearch(given+letter)) #iterate through each key and recurse to find the ends of that list
 
-        return x
-
+        return list(itertools.chain.from_iterable(x))
+        # return x
     def autoComplete(self,w):
-        #Returns possible list of autocompletions of the word w
-        #Returns a list of pairs (s,j) denoting that
-        #         word s occurs with frequency j
-
-
+    
         x = []
+
 
         for letter in w:
             if letter not in self.next:
-                return [] #we know that if all the prefix letters dont exist there is no larger word that will
+                return #we know that if all the prefix letters dont exist there is no larger word that will
             if self.isWordEnd:
                 x.append((w, self.count)) #for the off chance that we are passed a word
             self = self.next[letter] #move to the next letter of the prefix
@@ -87,8 +85,10 @@ class MyTrieNode:
 
         print("autoComplete for word",w, "came out to be", x)
 
+        #flatten the list
+        final = list(chain(*x))
 
-        return(x)
+        return(final)
 
 
 
