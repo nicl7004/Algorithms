@@ -12,7 +12,9 @@ def lookupTest(t, lstToLookup):
     return retValue
 
 def autoCompleteTest(t, stem, expResult):
+    print("Type = ", type(stem))
     lst1 = sorted(t.autoComplete(stem))
+
     lstRet = sorted(expResult)
     if (len(lst1) != len(lstRet)):
         print('\t autoComplete(\"%s\") failed'%(stem))
@@ -27,7 +29,7 @@ def autoCompleteTest(t, stem, expResult):
             print('autoComplete(\"%s\") failed'%(stem))
             print('\t Expected: ',lstRet)
             print('\t Got: ', lst1 )
-            return False   
+            return False
     return True
 
 def runTest(fileName):
@@ -70,17 +72,9 @@ if (__name__=='__main__'):
         fileName = 'test1'
     else:
         fileName = sys.argv[1]
-    
+
     rslt = runTest(fileName)
     if (rslt):
         print(fileName, 'passed')
     else:
         print(fileName, 'failed')
-
-    
-    
-
-        
-                         
-        
-    

@@ -47,48 +47,66 @@ class MyTrieNode:
         for letter in w:
             if letter in self.next: #move to the next letter
                 self = self.next[letter]
-
+            else:
+                return(False)
         if self.isWordEnd == True: #check if the current letter is the end of a word
             return self.count #return the frequency of this word
 
-        return(0)
+        return(False)
 
     def depthSearch(self, given):
         '''depth search first traversal to search after our prefix is exhausted. '''
         x = []
 
         for letter in self.next.keys():
-            print("letter=", letter)
+            # print("letter=", letter)
             if self.next[letter].isWordEnd == True:
                 y = (given+letter, self.next[letter].count)
-                x.append(y)
+                x.append((y))
 
-            x.append(self.next[letter].depthSearch(given+letter)) #iterate through each key and recurse to find the ends of that list
+            x.append((self.next[letter].depthSearch(given+letter))) #iterate through each key and recurse to find the ends of that list
 
-        return list(itertools.chain.from_iterable(x))
-        # return x
+        return (itertools.chain.from_iterable(x))
+
     def autoComplete(self,w):
-    
+
         x = []
+        numbers = []
+        letters = []
+        tmp = []
 
 
         for letter in w:
             if letter not in self.next:
                 return #we know that if all the prefix letters dont exist there is no larger word that will
             if self.isWordEnd:
-                x.append((w, self.count)) #for the off chance that we are passed a word
+                x.append((w, str(self.count))) #for the off chance that we are passed a word
+                break
             self = self.next[letter] #move to the next letter of the prefix
 
 
 
-        x.append(self.depthSearch(w))
+        #below checks each item of each and if it is even or odd, then appends it
+        #to either the letters or numbers list to later be zipped and appended
+        #to the master list
+        for intEach, each in enumerate(self.depthSearch(w)):
+            if intEach%2 ==0:
+                letters.append(each)
+            else:
+                numbers.append(each)
 
-        print("autoComplete for word",w, "came out to be", x)
+            # numbers.append(each[1])
+            # letters.append(each[0])
+
+        tmp = list(zip(letters, numbers))
+        x.append(tmp)
+            # x.append((each))
+
+        # print("autoComplete for word",w, "came out to be", list(itertools.chain.from_iterable(x)))
 
         #flatten the list
-        final = list(chain(*x))
 
-        return(final)
+        return list((itertools.chain.from_iterable(x)))
 
 
 
