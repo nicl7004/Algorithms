@@ -74,17 +74,26 @@ class MyTrieNode:
         numbers = []
         letters = []
         tmp = []
+        z= []
 
+            #check to see if we were given a word as our prefix and include that in
+            #our master list as well
+        if self.lookupWord(w):
+            y = [(w, self.lookupWord(w))]
+            x.append(list(y))
 
         for letter in w:
-            if letter not in self.next:
-                return #we know that if all the prefix letters dont exist there is no larger word that will
-            if self.isWordEnd:
-                x.append((w, str(self.count))) #for the off chance that we are passed a word
-                break
-            self = self.next[letter] #move to the next letter of the prefix
+            if letter in self.next:
+                self = self.next[letter]
+            else:
+                return []
 
-
+            #     return #we know that if all the prefix letters dont exist there is no larger word that will
+            # if self.isWordEnd == True:
+            #     x.append((w, str(self.count))) #for the off chance that we are passed a word
+            #
+            #     break
+            # self = self.next[letter] #move to the next letter of the prefix
 
         #below checks each item of each and if it is even or odd, then appends it
         #to either the letters or numbers list to later be zipped and appended
